@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es" ng-app="WTCEvents">
 <head>
   <meta charset="utf-8">
   <title>WTC Querétaro | Events</title>
@@ -9,7 +9,41 @@
   <link rel="stylesheet" type="text/css" href="{!! asset('public/assets/css/materialize.css?v='.time()) !!}">
   <link rel="stylesheet" type="text/css" href="{!! asset('public/assets/css/style.css?v='.time()) !!}">
 </head>
-<body>
+<body ng-controller="WelcomeController">
+<!-- Modal Structure -->
+<div id="login-modal" class="modal login-modal">
+  <div class="modal-content">
+    <div class="row">
+      <div class="col s12">
+        <h4 class="center-align">Iniciar sesión</h4>
+      </div>
+      <div class="col s12">
+        <form id="login-form" class="login-form">
+          <div class="input-field col s11">
+            <i class="material-icons prefix">account_circle</i>
+            <input id="user-email" type="email" class="validate" placeholder="example@mail.com">
+            <label for="user-email">E-mail</label>
+          </div>
+          <div class="input-field col s11">
+            <i class="material-icons prefix">vpn_key</i>
+            <input id="user-password" type="password" class="validate" placeholder="Ej. 12345678">
+            <label for="user-password">Contraseña</label>
+          </div>
+          <div class="input-field col s12">
+            <div class="center">
+              <button type="submit" class="btn-submit center-align modal-action modal-close waves-effect waves-light btn">
+                Iniciar sesión
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <!-- something here -->
+  </div>
+</div>
 <div class="row desktop-hero">
   <div class="header col s12">
     <div class="container">
@@ -24,7 +58,7 @@
                 <a href="#" class="active">Crear tu evento</a>
               </li>
               <li>
-                <a href="#">Iniciar sesión</a>
+                <a ng-click="showLogin()" href="#">Iniciar sesión</a>
               </li>
               <li>
                 <a href="#">Registrarse</a>
@@ -142,7 +176,7 @@
   <footer class="page-footer">
     <div class="container">
       <div class="row">
-        <div class="col l10 offset-l1 s12">
+        <div class="col l12 s12">
           <div class="col l6 s12">
             <h5 class="white-text">Footer Content</h5>
             <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
@@ -181,7 +215,9 @@
     </div>
   </footer>
 </div>
-<script type="text/javascript" src="{!! asset('public/assets/js/jquery.min.js') !!}"></script>
-<script type="text/javascript" src="{!! asset('public/assets/js/materialize.js') !!}"></script>
+<script type="text/javascript" src="{!! asset('public/assets/js/jquery.min.js?v='.time()) !!}"></script>
+<script type="text/javascript" src="{!! asset('public/assets/js/materialize.js?v='.time()) !!}"></script>
+<script type="text/javascript" src="{!! asset('public/assets/js/angular.js?v='.time()) !!}"></script>
+<script type="text/javascript" src="{!! asset('public/assets/js/app.js?v='.time()) !!}"></script>
 </body>
 </html>

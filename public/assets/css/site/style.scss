@@ -29,6 +29,16 @@ body {
   font-family: 'Open sans', 'Roboto', arial, sans-serif;
 }
 
+.modal {
+  &.login-modal {
+    width: 420px;
+
+    .btn-submit {
+      background-color: #0099db;
+    }
+  }
+}
+
 .desktop-hero {
   background-image: url('../img/queretaro-4.png');
   background-repeat: no-repeat;
@@ -195,33 +205,12 @@ body {
   color: #FFFFFF;
 
   .social-networks {
+    min-height: 160px;
+
     .icon {
-      font-size: 42px;
+      font-size: 36px;
       color: #FFFFFF;
       margin-left: 4px;
-  
-      /*
-      &.facebook {
-        background-color: #FFFFFF;
-        color: #3b5998;
-        line-height: 80%;
-        border-radius: 7px;
-      }
-
-      &.twitter {
-        background-color: #FFFFFF;
-        color: #1da1f2;
-        line-height: 80%;
-        border-radius: 7px;
-      }
-
-      &.google-plus {
-        background-color: #FFFFFF;
-        color: #dc4a38;
-        line-height: 80%;
-        border-radius: 7px;
-      }
-      */
     }
   }
 
