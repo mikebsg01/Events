@@ -1,11 +1,27 @@
+$.fn.serializeObject = function() {
+  var o = {};
+  var a = this.serializeArray();
+  $.each(a, function() {
+    if (o[this.name] !== undefined) {
+      if (!o[this.name].push) {
+        o[this.name] = [o[this.name]];
+      }
+      o[this.name].push(this.value || '');
+    } else {
+      o[this.name] = this.value || '';
+    }
+  });
+  return o;
+};
+
 (function(window) {
   'use strict';
 
   var app = angular.module('WTCEvents', []);
 
   app.controller('WelcomeController', [
-    '$scope',
-    function($scope) {
+    '$scope', '$http',
+    function($scope, $http) {
       $scope.showModalByName = null;
 
       $('.modal').modal({
@@ -20,6 +36,37 @@
           console.log(modal, trigger);
         },
         complete: function() {}
+      });
+
+      $('#signup-form').submit(function(event) {
+        event.preventDefault();
+        alert("enviar");
+        var serializedData = $(this).serializeObject();
+        console.log(serializedData);
+
+        $http.post(
+          'register',
+          serializedData
+        )
+        .then(function(res) {
+          console.log("success: ", res);
+        },
+        function(resp) {
+          console.log("error: ", resp.data);
+          $.each(resp.data, function(key, val) {
+            console.log(key, val);
+            $('#signup-'+key).removeClass('valid').addClass('invalid validation-message');
+            $('label[for="signup-'+key+'"]').attr('data-error', val[0]);
+          });
+        });
+      });
+
+      $('#login-form').submit(function(event){
+        var $submitBtn = $(this).find('button[type="submit"]');
+
+        if ($submitBtn.length > 0) {
+          $submitBtn.addClass('disabled');
+        }
       });
 
       $scope.showModal = function(modalName) {
@@ -40,16 +87,6 @@
             break;
         }
       };
-
-      $scope.submitForm = function(formName) {
-        switch (formName) {
-          case 'signup':
-            $('#signup-form').submit();
-            break;
-          default:
-            break;
-        }
-      }
     }
   ]);
 })(window);

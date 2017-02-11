@@ -25,17 +25,17 @@
         {!! Form::open(['url' => '/register', 'method' => 'POST', 'id' => 'login-form', 'class' => 'login-form']) !!}
           <div class="input-field col s11">
             <i class="material-icons prefix">account_circle</i>
-            <input id="user-email" type="email" name="email" class="validate" placeholder="example@mail.com">
-            <label for="user-email">E-mail</label>
+            <input id="login-email" type="email" name="email" class="validate" placeholder="example@mail.com" required="required">
+            <label for="login-email">E-mail</label>
           </div>
           <div class="input-field col s11">
             <i class="material-icons prefix">vpn_key</i>
-            <input id="user-password" type="password" name="password" class="validate" placeholder="Ej. 12345678">
-            <label for="user-password">Contraseña</label>
+            <input id="login-password" type="password" name="password" class="validate" placeholder="Ej. 12345678" required="required">
+            <label for="login-password">Contraseña</label>
           </div>
           <div class="input-field col s12">
             <div class="center">
-              <button type="submit" class="btn-submit center-align modal-action modal-close waves-effect waves-light btn">
+              <button type="submit" class="btn-submit center-align modal-action waves-effect waves-light btn">
                 Iniciar sesión
               </button>
             </div>
@@ -50,51 +50,51 @@
 </div>
 <!-- Modal - Sign Up -->
 <div id="signup-modal" class="signup-modal modal modal-fixed-footer">
-  <div class="modal-content">
-    <div class="row">
-      <div class="col s12">
-        <h4 class="center-align">Registrarse</h4>
-      </div>
-      <div class="col s12">
-        {!! Form::open(['url' => '/register', 'method' => 'POST', 'id' => 'signup-form', 'class' => 'signup-form']) !!}
+  {!! Form::open(['url' => '/register', 'method' => 'POST', 'id' => 'signup-form', 'class' => 'signup-form']) !!}
+    <div class="modal-content">
+      <div class="row">
+        <div class="col s12">
+          <h4 class="center-align">Registrarse</h4>
+        </div>
+        <div class="col s12">
           <div class="input-field col s6">
             <i class="material-icons prefix">perm_identity</i>
-            <input id="user-firstname" type="text" name="first_name" class="validate">
-            <label for="user-firstname">Nombre(s)</label>
+            <input id="signup-firstname" type="text" name="first_name" class="validate" required="required">
+            <label for="signup-firstname">Nombre(s)</label>
           </div>
           <div class="input-field col s6">
-            <input id="user-lastname" type="text" name="last_name" class="validate">
-            <label for="user-lastname">Apellido(s)</label>
+            <input id="signup-lastname" type="text" name="last_name" class="validate" required="required">
+            <label for="signup-lastname">Apellido(s)</label>
           </div>
           <div class="input-field col s10">
             <i class="material-icons prefix">account_circle</i>
-            <input id="user-username" type="text" name="username" class="validate">
-            <label for="user-username">Nombre de Usuario</label>
+            <input id="signup-username" type="text" name="username" class="validate" required="required">
+            <label for="signup-username">Nombre de Usuario</label>
           </div>
           <div class="input-field col s10">
             <i class="material-icons prefix">email</i>
-            <input id="user-email" type="email" name="email" class="validate" placeholder="example@mail.com">
-            <label for="user-email">E-mail</label>
+            <input id="signup-email" type="email" name="email" class="validate" placeholder="example@mail.com" required="required">
+            <label for="signup-email">E-mail</label>
           </div>
           <div class="input-field col s10">
             <i class="material-icons prefix">vpn_key</i>
-            <input id="user-password" type="password" name="password" class="validate" placeholder="Ej. 12345678">
-            <label for="user-password">Contraseña</label>
+            <input id="signup-password" type="password" name="password" class="validate" placeholder="Ej. 12345678" required="required">
+            <label for="signup-password">Contraseña</label>
           </div>
           <div class="input-field col s9 offset-s1">
-            <input id="user-confirm-password" type="password" name="password_confirmation" class="validate" placeholder="Ej. 12345678">
-            <label for="user-confirm-password">Confirmar Contraseña</label>
+            <input id="signup-confirm-password" type="password" name="password_confirmation" class="validate" placeholder="Ej. 12345678" required="required">
+            <label for="signup-confirm-password">Confirmar Contraseña</label>
           </div>
-        {!! Form::close() !!}
+        </div>
       </div>
     </div>
-  </div>
-  <div class="modal-footer center-align">
-    <!-- something here -->
-    <button type="submit" class="btn-submit center-align modal-action modal-close waves-effect waves-light btn">
-      Registrarse
-    </button>
-  </div>
+    <div class="modal-footer center-align">
+      <!-- something here -->
+      <button type="submit" class="btn-submit center-align modal-action waves-effect waves-light btn">
+        Registrarse
+      </button>
+    </div>
+  {!! Form::close() !!}
 </div>
 <div class="row desktop-hero">
   <div class="header col s12">

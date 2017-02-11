@@ -50,6 +50,18 @@ body {
       height: 80%;
     }
 
+    .signup-form {
+      .validate.validation-message {
+        margin-bottom: 50px;
+      }
+
+      label[data-error] {
+        margin-top: 8px;
+        font-size: 13px;
+        font-weight: bold;
+      }
+    }
+
     .btn-submit {
       float: none;
       background-color: #0099db;
