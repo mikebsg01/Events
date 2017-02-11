@@ -10,39 +10,110 @@
   <link rel="stylesheet" type="text/css" href="{!! asset('public/assets/css/style.css?v='.time()) !!}">
 </head>
 <body ng-controller="WelcomeController">
-<!-- Modal Structure -->
-<div id="login-modal" class="modal login-modal">
+<!-- Modal - Log In -->
+<div id="login-modal" class="login-modal modal">
   <div class="modal-content">
     <div class="row">
       <div class="col s12">
         <h4 class="center-align">Iniciar sesión</h4>
       </div>
-      <div class="col s12">
-        <form id="login-form" class="login-form">
+      <div class="col s12 login-form-container">
+        {!! Form::open(['url' => '/login', 'method' => 'POST', 'id' => 'login-form', 'class' => 'login-form']) !!}
           <div class="input-field col s11">
             <i class="material-icons prefix">account_circle</i>
-            <input id="user-email" type="email" class="validate" placeholder="example@mail.com">
-            <label for="user-email">E-mail</label>
+            <input id="login-email" type="email" name="email" class="validate" placeholder="example@mail.com" required="required">
+            <label for="login-email">E-mail</label>
           </div>
           <div class="input-field col s11">
             <i class="material-icons prefix">vpn_key</i>
-            <input id="user-password" type="password" class="validate" placeholder="Ej. 12345678">
-            <label for="user-password">Contraseña</label>
+            <input id="login-password" type="password" name="password" class="validate" placeholder="Ej. 12345678" required="required">
+            <label for="login-password">Contraseña</label>
           </div>
           <div class="input-field col s12">
             <div class="center">
-              <button type="submit" class="btn-submit center-align modal-action modal-close waves-effect waves-light btn">
+              <button type="submit" class="btn-submit center-align modal-action waves-effect waves-light btn">
                 Iniciar sesión
               </button>
+              <div ng-show="sendingData == true" class="login-preloader preloader-wrapper small active">
+                <div class="spinner-layer spinner-blue-only">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div><div class="gap-patch">
+                    <div class="circle"></div>
+                  </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </form>
+        {!! Form::close() !!}
+      </div>
+      <div class="col s10 offset-s1 center-align">
+        <span>¿Aún no tienes una cuenta? <a href="#signup" ng-click="showModal('signup')">click aquí para Registrarse.</a></span>
       </div>
     </div>
   </div>
-  <div class="modal-footer">
-    <!-- something here -->
-  </div>
+</div>
+<!-- Modal - Sign Up -->
+<div id="signup-modal" class="signup-modal modal modal-fixed-footer">
+  {!! Form::open(['url' => '/register', 'method' => 'POST', 'id' => 'signup-form', 'class' => 'signup-form']) !!}
+    <div class="modal-content">
+      <div class="row">
+        <div class="col s12">
+          <h4 class="center-align">Registrarse</h4>
+        </div>
+        <div class="col s12">
+          <div class="input-field col s6">
+            <i class="material-icons prefix">perm_identity</i>
+            <input id="signup-firstname" type="text" name="first_name" class="validate" required="required">
+            <label for="signup-firstname">Nombre(s)</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="signup-lastname" type="text" name="last_name" class="validate" required="required">
+            <label for="signup-lastname">Apellido(s)</label>
+          </div>
+          <div class="input-field col s10">
+            <i class="material-icons prefix">account_circle</i>
+            <input id="signup-username" type="text" name="username" class="validate" required="required">
+            <label for="signup-username">Nombre de Usuario</label>
+          </div>
+          <div class="input-field col s10">
+            <i class="material-icons prefix">email</i>
+            <input id="signup-email" type="email" name="email" class="validate" placeholder="example@mail.com" required="required">
+            <label for="signup-email">E-mail</label>
+          </div>
+          <div class="input-field col s10">
+            <i class="material-icons prefix">vpn_key</i>
+            <input id="signup-password" type="password" name="password" class="validate" placeholder="Ej. 12345678" required="required">
+            <label for="signup-password">Contraseña</label>
+          </div>
+          <div class="input-field col s10">
+            <i class="material-icons prefix">done</i>
+            <input id="signup-confirm-password" type="password" name="password_confirmation" class="validate" placeholder="Ej. 12345678" required="required">
+            <label for="signup-confirm-password">Confirmar Contraseña</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer center-align">
+      <!-- something here -->
+      <button type="submit" class="btn-submit center-align modal-action waves-effect waves-light btn">
+        Registrarse
+      </button>
+      <div ng-show="sendingData == true" class="signup-preloader preloader-wrapper small active">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {!! Form::close() !!}
 </div>
 <div class="row desktop-hero">
   <div class="header col s12">
@@ -54,15 +125,27 @@
         <div class="right">
           <div class="app-navbar">
             <ul>
-              <li>
-                <a href="#" class="active">Crear tu evento</a>
-              </li>
-              <li>
-                <a ng-click="showLogin()" href="#">Iniciar sesión</a>
-              </li>
-              <li>
-                <a href="#">Registrarse</a>
-              </li>
+              @if (Auth::check())
+                <li>
+                  <a href="{!! URL::to('/logout') !!}">Cerrar Sessión</a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span class="fa fa-user"></span>
+                    {!! Auth::user()->full_name !!}
+                  </a>
+                </li>
+              @else
+                <li>
+                  <a ng-click="showModal('login')" href="#create-event" class="active">Crear tu evento</a>
+                </li>
+                <li>
+                  <a ng-click="showModal('login')" href="#login">Iniciar sesión</a>
+                </li>
+                <li>
+                  <a ng-click="showModal('signup')" href="#signup">Registrarse</a>
+                </li>
+              @endif
             </ul>
           </div>
         </div>
@@ -76,7 +159,7 @@
       </div>
       <div class="col s12">
         <div class="col offset-s2 s8">
-          <form class="event-search-form">
+          <form action="/other" class="event-search-form">
             <input type="text" class="input-1 input-field col s10" placeholder="Encuentra un evento para ti">
             <button class="waves-effect waves-light btn col s2">Buscar</button>
           </form>

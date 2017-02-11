@@ -20,4 +20,12 @@ Route::group(['as' => 'site'], function() {
       'as'    => '.index'
     ]);
   });
+
+  Route::group(['as' => '.auth'], function() {
+    Route::auth();
+  });
 });
+
+
+
+Route::get('/home', 'HomeController@index');

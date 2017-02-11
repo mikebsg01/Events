@@ -24,17 +24,74 @@
   }
 }
 
+/* label focus color */
+.input-field input:focus + label,
+.input-field .prefix.active {
+  color: #0099db !important;
+}
+
+/* label underline focus color */
+.input-field input:focus {
+ border-bottom: 1px solid #0099db !important;
+ box-shadow: 0 1px 0 0 #0099db !important;
+}
+
 /* APP STYLES */
 body {
   font-family: 'Open sans', 'Roboto', arial, sans-serif;
+}
+
+form {
+  .validate.validation-message {
+    margin-bottom: 50px;
+  }
+
+  label[data-error] {
+    margin-top: 8px;
+    font-size: 13px !important;
+    font-weight: bold;
+  }
+}
+
+.preloader-wrapper {
+  position: absolute;
+  margin-left: 10px;
 }
 
 .modal {
   &.login-modal {
     width: 420px;
 
+    .login-form-container {
+      margin-bottom: 30px;
+    }
+
     .btn-submit {
       background-color: #0099db;
+    }
+  }
+
+  &.signup-modal {
+    width: 640px;
+    max-height: 80%;
+
+    &.modal-fixed-footer {
+      height: 80%;
+    }
+
+    .btn-submit {
+      float: none;
+      background-color: #0099db;
+    }
+  }
+
+  .modal-footer {
+    height: 64px;
+
+    .preloader-wrapper {
+      position: absolute;
+      margin-top: 4px;
+      margin-left: 10px;
     }
   }
 }
