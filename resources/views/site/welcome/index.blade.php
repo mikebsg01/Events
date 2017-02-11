@@ -39,7 +39,7 @@
         </form>
       </div>
       <div class="col s10 offset-s1 center-align">
-        <span>¿Aún no tienes una cuenta? <a href="#">Click aquí para registrarse.</a></span>
+        <span>¿Aún no tienes una cuenta? <a href="#signup" ng-click="changeToSignUpModalEvent()">Click aquí para registrarse.</a></span>
       </div>
     </div>
   </div>
@@ -103,13 +103,13 @@
           <div class="app-navbar">
             <ul>
               <li>
-                <a href="#" class="active">Crear tu evento</a>
+                <a ng-click="showModal('login')" href="#create-event" class="active">Crear tu evento</a>
               </li>
               <li>
-                <a ng-click="showLogInModal()" href="#">Iniciar sesión</a>
+                <a ng-click="showModal('login')" href="#login">Iniciar sesión</a>
               </li>
               <li>
-                <a ng-click="showSignUpModal()" href="#">Registrarse</a>
+                <a ng-click="showModal('signup')" href="#signup">Registrarse</a>
               </li>
             </ul>
           </div>

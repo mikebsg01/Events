@@ -6,6 +6,8 @@
   app.controller('WelcomeController', [
     '$scope',
     function($scope) {
+      $scope.showModalByName = null;
+
       $('.modal').modal({
         dismissible: true,
         opacity: .5,
@@ -22,12 +24,26 @@
         }
       });
 
-      $scope.showLogInModal = function() {
-        $('#login-modal').modal('open');
-      }
+      $scope.$watch('showModalByName', function(newVal, oldVal) {
 
-      $scope.showSignUpModal = function() {
-        $('#signup-modal').modal('open');
+        if ($('.modal.open').length > 0) {
+          $('.modal.open').modal('close');
+        }
+
+        if (newVal == 'login') {
+          $('#login-modal').modal('open');
+        }
+        else if (newVal == 'signup') {
+          $('#signup-modal').modal('open'); 
+        }
+      });
+
+      $scope.showModal = function(modalName) {
+        $scope.showModalByName = modalName;
+      };
+
+      $scope.changeToSignUpModalEvent = function() {
+        $scope.showModalByName = 'signup';
       }
     }
   ]);
