@@ -22,7 +22,7 @@ $.fn.serializeObject = function() {
   app.controller('WelcomeController', [
     '$scope', '$http',
     function($scope, $http) {
-      $scope.showModalByName = null;
+      $scope.sendingData = false;
 
       $('.modal').modal({
         dismissible: true,
@@ -40,23 +40,30 @@ $.fn.serializeObject = function() {
 
       $('#signup-form').submit(function(event) {
         event.preventDefault();
-        alert("enviar");
-        var serializedData = $(this).serializeObject();
-        console.log(serializedData);
+        var $submitBtn = $(this).find('button[type="submit"]'),
+            serializedData = $(this).serializeObject();
+
+        if ($submitBtn.length > 0) {
+          $submitBtn.addClass('disabled');
+        }
+        $scope.sendingData = true;
 
         $http.post(
           'register',
           serializedData
         )
         .then(function(res) {
-          console.log("success: ", res);
+          setTimeout(function() {
+            $scope.sendingData = false;
+            location.reload();
+          }, 2000);
         },
         function(resp) {
-          console.log("error: ", resp.data);
+          $scope.sendingData = false;
           $.each(resp.data, function(key, val) {
-            console.log(key, val);
             $('#signup-'+key).removeClass('valid').addClass('invalid validation-message');
             $('label[for="signup-'+key+'"]').attr('data-error', val[0]);
+            $submitBtn.removeClass('disabled');
           });
         });
       });

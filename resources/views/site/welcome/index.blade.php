@@ -10,10 +10,6 @@
   <link rel="stylesheet" type="text/css" href="{!! asset('public/assets/css/style.css?v='.time()) !!}">
 </head>
 <body ng-controller="WelcomeController">
-
-{{ Auth::user() != null ? dd(Auth::user()) : null }}
-{{ $errors->count() > 0 ? dd($errors->all()) : null  }}
-
 <!-- Modal - Log In -->
 <div id="login-modal" class="login-modal modal">
   <div class="modal-content">
@@ -81,7 +77,8 @@
             <input id="signup-password" type="password" name="password" class="validate" placeholder="Ej. 12345678" required="required">
             <label for="signup-password">Contraseña</label>
           </div>
-          <div class="input-field col s9 offset-s1">
+          <div class="input-field col s10">
+            <i class="material-icons prefix">done</i>
             <input id="signup-confirm-password" type="password" name="password_confirmation" class="validate" placeholder="Ej. 12345678" required="required">
             <label for="signup-confirm-password">Confirmar Contraseña</label>
           </div>
@@ -93,6 +90,17 @@
       <button type="submit" class="btn-submit center-align modal-action waves-effect waves-light btn">
         Registrarse
       </button>
+      <div ng-show="sendingData == true" class="signup-preloader preloader-wrapper small active">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
     </div>
   {!! Form::close() !!}
 </div>
@@ -106,15 +114,27 @@
         <div class="right">
           <div class="app-navbar">
             <ul>
-              <li>
-                <a ng-click="showModal('login')" href="#create-event" class="active">Crear tu evento</a>
-              </li>
-              <li>
-                <a ng-click="showModal('login')" href="#login">Iniciar sesión</a>
-              </li>
-              <li>
-                <a ng-click="showModal('signup')" href="#signup">Registrarse</a>
-              </li>
+              @if (Auth::check())
+                <li>
+                  <a href="{!! URL::to('/logout') !!}">Cerrar Sessión</a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span class="fa fa-user"></span>
+                    {!! Auth::user()->full_name !!}
+                  </a>
+                </li>
+              @else
+                <li>
+                  <a ng-click="showModal('login')" href="#create-event" class="active">Crear tu evento</a>
+                </li>
+                <li>
+                  <a ng-click="showModal('login')" href="#login">Iniciar sesión</a>
+                </li>
+                <li>
+                  <a ng-click="showModal('signup')" href="#signup">Registrarse</a>
+                </li>
+              @endif
             </ul>
           </div>
         </div>
