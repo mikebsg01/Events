@@ -19,31 +19,36 @@
           console.log("Ready");
           console.log(modal, trigger);
         },
-        complete: function() {
-          console.log('Closed');
-        }
-      });
-
-      $scope.$watch('showModalByName', function(newVal, oldVal) {
-
-        if ($('.modal.open').length > 0) {
-          $('.modal.open').modal('close');
-        }
-
-        if (newVal == 'login') {
-          $('#login-modal').modal('open');
-        }
-        else if (newVal == 'signup') {
-          $('#signup-modal').modal('open'); 
-        }
+        complete: function() {}
       });
 
       $scope.showModal = function(modalName) {
-        $scope.showModalByName = modalName;
+        var $openModals = $('.modal.open');
+
+        if ($openModals.length > 0) {
+          $openModals.modal('close');
+        }
+
+        switch (modalName) {
+          case 'login':
+            $('#login-modal').modal('open');
+            break;
+          case 'signup':
+            $('#signup-modal').modal('open');
+            break;
+          default:
+            break;
+        }
       };
 
-      $scope.changeToSignUpModalEvent = function() {
-        $scope.showModalByName = 'signup';
+      $scope.submitForm = function(formName) {
+        switch (formName) {
+          case 'signup':
+            $('#signup-form').submit();
+            break;
+          default:
+            break;
+        }
       }
     }
   ]);

@@ -10,6 +10,10 @@
   <link rel="stylesheet" type="text/css" href="{!! asset('public/assets/css/style.css?v='.time()) !!}">
 </head>
 <body ng-controller="WelcomeController">
+
+{{ Auth::user() != null ? dd(Auth::user()) : null }}
+{{ $errors->count() > 0 ? dd($errors->all()) : null  }}
+
 <!-- Modal - Log In -->
 <div id="login-modal" class="login-modal modal">
   <div class="modal-content">
@@ -18,15 +22,15 @@
         <h4 class="center-align">Iniciar sesión</h4>
       </div>
       <div class="col s12 login-form-container">
-        <form id="login-form" class="login-form">
+        {!! Form::open(['url' => '/register', 'method' => 'POST', 'id' => 'login-form', 'class' => 'login-form']) !!}
           <div class="input-field col s11">
             <i class="material-icons prefix">account_circle</i>
-            <input id="user-email" type="email" class="validate" placeholder="example@mail.com">
+            <input id="user-email" type="email" name="email" class="validate" placeholder="example@mail.com">
             <label for="user-email">E-mail</label>
           </div>
           <div class="input-field col s11">
             <i class="material-icons prefix">vpn_key</i>
-            <input id="user-password" type="password" class="validate" placeholder="Ej. 12345678">
+            <input id="user-password" type="password" name="password" class="validate" placeholder="Ej. 12345678">
             <label for="user-password">Contraseña</label>
           </div>
           <div class="input-field col s12">
@@ -36,10 +40,10 @@
               </button>
             </div>
           </div>
-        </form>
+        {!! Form::close() !!}
       </div>
       <div class="col s10 offset-s1 center-align">
-        <span>¿Aún no tienes una cuenta? <a href="#signup" ng-click="changeToSignUpModalEvent()">Click aquí para registrarse.</a></span>
+        <span>¿Aún no tienes una cuenta? <a href="#signup" ng-click="showModal('signup')">Click aquí para registrarse.</a></span>
       </div>
     </div>
   </div>
@@ -52,36 +56,36 @@
         <h4 class="center-align">Registrarse</h4>
       </div>
       <div class="col s12">
-        <form id="signup-form" class="signup-form">
+        {!! Form::open(['url' => '/register', 'method' => 'POST', 'id' => 'signup-form', 'class' => 'signup-form']) !!}
           <div class="input-field col s6">
             <i class="material-icons prefix">perm_identity</i>
-            <input id="user-firstname" type="text" class="validate">
+            <input id="user-firstname" type="text" name="first_name" class="validate">
             <label for="user-firstname">Nombre(s)</label>
           </div>
           <div class="input-field col s6">
-            <input id="user-lastname" type="text" class="validate">
+            <input id="user-lastname" type="text" name="last_name" class="validate">
             <label for="user-lastname">Apellido(s)</label>
           </div>
           <div class="input-field col s10">
             <i class="material-icons prefix">account_circle</i>
-            <input id="user-username" type="text" class="validate">
+            <input id="user-username" type="text" name="username" class="validate">
             <label for="user-username">Nombre de Usuario</label>
           </div>
           <div class="input-field col s10">
             <i class="material-icons prefix">email</i>
-            <input id="user-email" type="email" class="validate" placeholder="example@mail.com">
+            <input id="user-email" type="email" name="email" class="validate" placeholder="example@mail.com">
             <label for="user-email">E-mail</label>
           </div>
           <div class="input-field col s10">
             <i class="material-icons prefix">vpn_key</i>
-            <input id="user-password" type="password" class="validate" placeholder="Ej. 12345678">
+            <input id="user-password" type="password" name="password" class="validate" placeholder="Ej. 12345678">
             <label for="user-password">Contraseña</label>
           </div>
           <div class="input-field col s9 offset-s1">
-            <input id="user-confirm-password" type="password" class="validate" placeholder="Ej. 12345678">
+            <input id="user-confirm-password" type="password" name="password_confirmation" class="validate" placeholder="Ej. 12345678">
             <label for="user-confirm-password">Confirmar Contraseña</label>
           </div>
-        </form>
+        {!! Form::close() !!}
       </div>
     </div>
   </div>
@@ -124,7 +128,7 @@
       </div>
       <div class="col s12">
         <div class="col offset-s2 s8">
-          <form class="event-search-form">
+          <form action="/other" class="event-search-form">
             <input type="text" class="input-1 input-field col s10" placeholder="Encuentra un evento para ti">
             <button class="waves-effect waves-light btn col s2">Buscar</button>
           </form>

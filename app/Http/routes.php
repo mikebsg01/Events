@@ -21,3 +21,7 @@ Route::group(['as' => 'site'], function() {
     ]);
   });
 });
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
