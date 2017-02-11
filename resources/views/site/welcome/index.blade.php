@@ -18,7 +18,7 @@
         <h4 class="center-align">Iniciar sesión</h4>
       </div>
       <div class="col s12 login-form-container">
-        {!! Form::open(['url' => '/register', 'method' => 'POST', 'id' => 'login-form', 'class' => 'login-form']) !!}
+        {!! Form::open(['url' => '/login', 'method' => 'POST', 'id' => 'login-form', 'class' => 'login-form']) !!}
           <div class="input-field col s11">
             <i class="material-icons prefix">account_circle</i>
             <input id="login-email" type="email" name="email" class="validate" placeholder="example@mail.com" required="required">
@@ -34,6 +34,17 @@
               <button type="submit" class="btn-submit center-align modal-action waves-effect waves-light btn">
                 Iniciar sesión
               </button>
+              <div ng-show="sendingData == true" class="login-preloader preloader-wrapper small active">
+                <div class="spinner-layer spinner-blue-only">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div><div class="gap-patch">
+                    <div class="circle"></div>
+                  </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         {!! Form::close() !!}

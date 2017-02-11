@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Lang;
+
 
 class AuthController extends Controller {
   /*
@@ -68,6 +72,21 @@ class AuthController extends Controller {
       'username'    => $data['username'],
       'email'       => $data['email'],
       'password'    => bcrypt($data['password']),
+    ]);
+  }
+
+  protected function sendFailedLoginResponse(Request $request) {
+
+    if ($request->ajax()) {
+      return response()->json([
+        'password' => Lang::get('auth.failed')
+      ], 401);
+    }
+
+    return redirect()->back()
+    ->withInput($request->only($this->loginUsername(), 'remember'))
+    ->withErrors([
+      'password' => Lang::get('auth.failed'),
     ]);
   }
 }

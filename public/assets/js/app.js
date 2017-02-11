@@ -19,6 +19,10 @@ $.fn.serializeObject = function() {
 
   var app = angular.module('WTCEvents', []);
 
+  app.config(['$httpProvider', function($httpProvider) {
+    $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+  }]);
+
   app.controller('WelcomeController', [
     '$scope', '$http',
     function($scope, $http) {
@@ -58,22 +62,45 @@ $.fn.serializeObject = function() {
             location.reload();
           }, 2000);
         },
-        function(resp) {
+        function(res) {
           $scope.sendingData = false;
-          $.each(resp.data, function(key, val) {
+          $.each(res.data, function(key, val) {
             $('#signup-'+key).removeClass('valid').addClass('invalid validation-message');
-            $('label[for="signup-'+key+'"]').attr('data-error', val[0]);
+            $('label[for="signup-'+key+'"]').attr('data-error', Array.isArray(val) ? val[0] : val);
             $submitBtn.removeClass('disabled');
           });
         });
       });
 
       $('#login-form').submit(function(event){
-        var $submitBtn = $(this).find('button[type="submit"]');
+        event.preventDefault();
+        var $submitBtn = $(this).find('button[type="submit"]'),
+            serializedData = $(this).serializeObject();
 
         if ($submitBtn.length > 0) {
           $submitBtn.addClass('disabled');
         }
+        $scope.sendingData = true;
+
+        $http.post(
+          'login',
+          serializedData
+        )
+        .then(function(res) {
+          setTimeout(function() {
+            $scope.sendingData = false;
+            location.reload();
+            console.log(res);
+          }, 2000);
+        }, function(res) {
+          console.log(res);
+          // $scope.sendingData = false;
+          $.each(res.data, function(key, val) {
+            $('#login-'+key).removeClass('valid').addClass('invalid validation-message');
+            $('label[for="login-'+key+'"]').attr('data-error', Array.isArray(val) ? val[0] : val);
+            $submitBtn.removeClass('disabled');
+          });
+        })
       });
 
       $scope.showModal = function(modalName) {

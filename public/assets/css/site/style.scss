@@ -41,6 +41,23 @@ body {
   font-family: 'Open sans', 'Roboto', arial, sans-serif;
 }
 
+form {
+  .validate.validation-message {
+    margin-bottom: 50px;
+  }
+
+  label[data-error] {
+    margin-top: 8px;
+    font-size: 13px !important;
+    font-weight: bold;
+  }
+}
+
+.preloader-wrapper {
+  position: absolute;
+  margin-left: 10px;
+}
+
 .modal {
   &.login-modal {
     width: 420px;
@@ -60,18 +77,6 @@ body {
 
     &.modal-fixed-footer {
       height: 80%;
-    }
-
-    .signup-form {
-      .validate.validation-message {
-        margin-bottom: 50px;
-      }
-
-      label[data-error] {
-        margin-top: 8px;
-        font-size: 13px;
-        font-weight: bold;
-      }
     }
 
     .btn-submit {
