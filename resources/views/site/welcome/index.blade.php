@@ -11,13 +11,13 @@
 </head>
 <body ng-controller="WelcomeController">
 <!-- Modal - Log In -->
-<div id="login-modal" class="modal login-modal">
+<div id="login-modal" class="login-modal modal">
   <div class="modal-content">
     <div class="row">
       <div class="col s12">
         <h4 class="center-align">Iniciar sesión</h4>
       </div>
-      <div class="col s12">
+      <div class="col s12 login-form-container">
         <form id="login-form" class="login-form">
           <div class="input-field col s11">
             <i class="material-icons prefix">account_circle</i>
@@ -38,14 +38,14 @@
           </div>
         </form>
       </div>
+      <div class="col s10 offset-s1 center-align">
+        <span>¿Aún no tienes una cuenta? <a href="#">Click aquí para registrarse.</a></span>
+      </div>
     </div>
-  </div>
-  <div class="modal-footer">
-    <!-- something here -->
   </div>
 </div>
 <!-- Modal - Sign Up -->
-<div id="signup-modal" class="modal signup-modal">
+<div id="signup-modal" class="signup-modal modal modal-fixed-footer">
   <div class="modal-content">
     <div class="row">
       <div class="col s12">
@@ -53,29 +53,43 @@
       </div>
       <div class="col s12">
         <form id="signup-form" class="signup-form">
-          <div class="input-field col s5">
+          <div class="input-field col s6">
+            <i class="material-icons prefix">perm_identity</i>
+            <input id="user-firstname" type="text" class="validate">
+            <label for="user-firstname">Nombre(s)</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="user-lastname" type="text" class="validate">
+            <label for="user-lastname">Apellido(s)</label>
+          </div>
+          <div class="input-field col s10">
             <i class="material-icons prefix">account_circle</i>
+            <input id="user-username" type="text" class="validate">
+            <label for="user-username">Nombre de Usuario</label>
+          </div>
+          <div class="input-field col s10">
+            <i class="material-icons prefix">email</i>
             <input id="user-email" type="email" class="validate" placeholder="example@mail.com">
             <label for="user-email">E-mail</label>
           </div>
-          <div class="input-field col s5">
+          <div class="input-field col s10">
             <i class="material-icons prefix">vpn_key</i>
             <input id="user-password" type="password" class="validate" placeholder="Ej. 12345678">
             <label for="user-password">Contraseña</label>
           </div>
-          <div class="input-field col s12">
-            <div class="center">
-              <button type="submit" class="btn-submit center-align modal-action modal-close waves-effect waves-light btn">
-                Iniciar sesión
-              </button>
-            </div>
+          <div class="input-field col s9 offset-s1">
+            <input id="user-confirm-password" type="password" class="validate" placeholder="Ej. 12345678">
+            <label for="user-confirm-password">Confirmar Contraseña</label>
           </div>
         </form>
       </div>
     </div>
   </div>
-  <div class="modal-footer">
+  <div class="modal-footer center-align">
     <!-- something here -->
+    <button type="submit" class="btn-submit center-align modal-action modal-close waves-effect waves-light btn">
+      Registrarse
+    </button>
   </div>
 </div>
 <div class="row desktop-hero">

@@ -33,6 +33,10 @@ body {
   &.login-modal {
     width: 420px;
 
+    .login-form-container {
+      margin-bottom: 30px;
+    }
+
     .btn-submit {
       background-color: #0099db;
     }
@@ -40,6 +44,16 @@ body {
 
   &.signup-modal {
     width: 640px;
+    max-height: 80%;
+
+    &.modal-fixed-footer {
+      height: 80%;
+    }
+
+    .btn-submit {
+      float: none;
+      background-color: #0099db;
+    }
   }
 }
 
