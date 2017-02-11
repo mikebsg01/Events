@@ -22,8 +22,12 @@
         }
       });
 
-      $scope.showLogin = function() {
+      $scope.showLogInModal = function() {
         $('#login-modal').modal('open');
+      }
+
+      $scope.showSignUpModal = function() {
+        $('#signup-modal').modal('open');
       }
     }
   ]);

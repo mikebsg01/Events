@@ -10,7 +10,7 @@
   <link rel="stylesheet" type="text/css" href="{!! asset('public/assets/css/style.css?v='.time()) !!}">
 </head>
 <body ng-controller="WelcomeController">
-<!-- Modal Structure -->
+<!-- Modal - Log In -->
 <div id="login-modal" class="modal login-modal">
   <div class="modal-content">
     <div class="row">
@@ -44,6 +44,40 @@
     <!-- something here -->
   </div>
 </div>
+<!-- Modal - Sign Up -->
+<div id="signup-modal" class="modal signup-modal">
+  <div class="modal-content">
+    <div class="row">
+      <div class="col s12">
+        <h4 class="center-align">Registrarse</h4>
+      </div>
+      <div class="col s12">
+        <form id="signup-form" class="signup-form">
+          <div class="input-field col s5">
+            <i class="material-icons prefix">account_circle</i>
+            <input id="user-email" type="email" class="validate" placeholder="example@mail.com">
+            <label for="user-email">E-mail</label>
+          </div>
+          <div class="input-field col s5">
+            <i class="material-icons prefix">vpn_key</i>
+            <input id="user-password" type="password" class="validate" placeholder="Ej. 12345678">
+            <label for="user-password">Contraseña</label>
+          </div>
+          <div class="input-field col s12">
+            <div class="center">
+              <button type="submit" class="btn-submit center-align modal-action modal-close waves-effect waves-light btn">
+                Iniciar sesión
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <!-- something here -->
+  </div>
+</div>
 <div class="row desktop-hero">
   <div class="header col s12">
     <div class="container">
@@ -58,10 +92,10 @@
                 <a href="#" class="active">Crear tu evento</a>
               </li>
               <li>
-                <a ng-click="showLogin()" href="#">Iniciar sesión</a>
+                <a ng-click="showLogInModal()" href="#">Iniciar sesión</a>
               </li>
               <li>
-                <a href="#">Registrarse</a>
+                <a ng-click="showSignUpModal()" href="#">Registrarse</a>
               </li>
             </ul>
           </div>
