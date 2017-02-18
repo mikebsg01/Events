@@ -21,6 +21,14 @@ Route::group(['as' => 'site'], function() {
     ]);
   });
 
+  Route::group(['prefix' => 'event', 'as' => '.event'], function() {
+    
+    Route::get('/create', [
+      'uses'  => 'User\EventController@create',
+      'as'    => '.create'
+    ]);
+  });
+
   Route::group(['as' => '.auth'], function() {
     Route::auth();
   });

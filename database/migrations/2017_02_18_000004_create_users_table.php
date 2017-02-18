@@ -10,7 +10,13 @@ class CreateUsersTable extends Migration {
    * @return void
    */
   public function up() {
+    /**
+     * Users - Fields
+     * ============================================================= //
+     */
     Schema::create('users', function (Blueprint $table) {
+      $table->engine = 'InnoDB';
+      
       $table->increments('id');
       $table->string('first_name', 45);
       $table->string('last_name', 45);
@@ -30,6 +36,16 @@ class CreateUsersTable extends Migration {
       $table->string('url_pinterest', 255)->nullable();
       $table->rememberToken();
       $table->timestamps();
+
+      /**
+       * Users - Foreign Keys
+       * ============================================================= //
+       */
+      $table->foreign('profile_image_id')
+            ->references('id')->on('images');
+
+      $table->foreign('location_id')
+            ->references('id')->on('locations');
     });
   }
 
