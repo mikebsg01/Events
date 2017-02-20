@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 class EventController extends Controller {
   /**
@@ -22,7 +23,10 @@ class EventController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function create() {
-      return view('site.event.create');
+    return view('site.event.create')->with([
+      'today'     => Carbon::now(),
+      'tomorrow'  => new Carbon('tomorrow')
+    ]);
   }
 
   /**

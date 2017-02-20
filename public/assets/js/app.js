@@ -21,7 +21,13 @@ $.fn.serializeObject = function() {
 
   app.run(function($rootScope) {
     $rootScope.APP_URL = 'http://localhost:7008/php/WTCEvents';
-  })
+
+    $('.datepicker').pickadate({
+      selectMonths: true,
+      selectYears: 15,
+      format: 'dd/mm/yyyy'
+    });
+  });
 
   app.config(['$httpProvider', function($httpProvider) {
     $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
@@ -121,6 +127,13 @@ $.fn.serializeObject = function() {
             break;
         }
       };
+    }
+  ]);
+
+  app.controller('EventController', [
+    '$scope', '$http',
+    function ($scope, $http) {
+
     }
   ]);
 })(window);

@@ -307,8 +307,8 @@ form {
 
     .event-image {
       display: inline-block;
-      width: 320px;
-      height: 180px;
+      width: 288px;
+      height: 162px;
       background-color: #F1F1F1;
       background-image: url('../img/v1/no-image.png');
       background-position: center center;
@@ -327,7 +327,8 @@ form {
 }
 
 #event-description {
-  height: 82px !important;
+  min-height: 82px !important;
+  resize: vertical;
 }
 
 .page-footer {

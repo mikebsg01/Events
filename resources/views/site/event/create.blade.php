@@ -19,19 +19,19 @@
             <i class="material-icons prefix">perm_contact_calendar</i>
             Crear un evento
           </span>
-          {!! Form::open(['url' => '#', 'class' => 'event-form']) !!}
+          {!! Form::open(['url' => '#', 'method' => 'GET', 'class' => 'event-form']) !!}
             <div class="row">
-              <div class="col s6">
-                <div class="input-field col s11">
+              <div class="col s7">
+                <div class="input-field col s12">
                   {!! Form::text('event[name]', null, ['id' => 'event-name', 'class' => 'validate', 'required' => 'required']) !!}
                   {!! Form::label('event-name', 'Nombre') !!}
                 </div>
-                <div class="input-field col s11">
+                <div class="input-field col s12">
                   {!! Form::textarea('event[description]', null, ['id' => 'event-description', 'class' => 'validate materialize-textarea', 'required' => 'required']) !!}
                   {!! Form::label('event-description', 'Descripción') !!}
                 </div>
               </div>
-              <div class="col s6 center-align">
+              <div class="col s5 center-align">
                 <div class="col s12 center-align">
                   <span>Agregar Imagen</span>
                 </div>
@@ -57,11 +57,11 @@
                   <div class="col s12 start-date-label">
                     <span>Fecha de Inicio</span>
                   </div>
-                  <div class="date-field input-field col s6">
-                    {!! Form::date('event[start_date][date]', '00/00/2017', ['id' => 'event-start-date-date', 'class' => 'validate center-align', 'required' => 'required']) !!}
+                  <div class="date-field input-field col s7">
+                    {!! Form::date('event[start_date][date]', null, ['id' => 'event-start-date-date', 'class' => 'validate center-align', 'required' => 'required']) !!}
                   </div>
                   <div class="date-field input-field col s5">
-                    {!! Form::time('event[start_date][time]', '00:00 AM', ['id' => 'event-start-date-time', 'class' => 'validate center-align', 'required' => 'required']) !!}
+                    {!! Form::time('event[start_date][time]', null, ['id' => 'event-start-date-time', 'class' => 'center-align', 'required' => 'required']) !!}
                   </div>
                 </div>
               </div>
@@ -70,11 +70,19 @@
                   <div class="col s12 end-date-label">
                     <span>Fecha de Finalización</span>
                   </div>
-                  <div class="date-field input-field col s6">
-                    {!! Form::date('event[end_date][date]', '00/00/2017', ['id' => 'event-end-date-date', 'class' => 'validate center-align', 'required' => 'required']) !!}
+                  <div class="date-field input-field col s7">
+                    {!! Form::date('event[end_date][date]', null, ['id' => 'event-end-date-date', 'class' => 'validate center-align', 'required' => 'required']) !!}
                   </div>
                   <div class="date-field input-field col s5">
-                    {!! Form::time('event[end_date][time]', '00:00 AM', ['id' => 'event-end-date-time', 'class' => 'validate center-align', 'required' => 'required']) !!}
+                    {!! Form::time('event[end_date][time]', null, ['id' => 'event-end-date-time', 'class' => 'center-align', 'required' => 'required']) !!}
+                  </div>
+                </div>
+              </div>
+              <div class="col s12">
+                <div class="col s7">
+                  <div class="input-field col s12">
+                    {!! Form::text('event[location]', null, ['id' => 'event-location', 'class' => 'validate', 'required' => 'required']) !!}
+                    {!! Form::label('event-location', 'Ubicación') !!}
                   </div>
                 </div>
               </div>
@@ -135,6 +143,7 @@
 -->
 <script type="text/javascript" src="{!! asset('public/assets/js/jquery.min.js?v='.time()) !!}"></script>
 <script type="text/javascript" src="{!! asset('public/assets/js/materialize.js?v='.time()) !!}"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
 <script type="text/javascript" src="{!! asset('public/assets/js/angular.js?v='.time()) !!}"></script>
 <script type="text/javascript" src="{!! asset('public/assets/js/app.js?v='.time()) !!}"></script>
 </body>
