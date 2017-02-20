@@ -19,6 +19,10 @@ $.fn.serializeObject = function() {
 
   var app = angular.module('WTCEvents', []);
 
+  app.run(function($rootScope) {
+    $rootScope.APP_URL = 'http://localhost:7008/php/WTCEvents';
+  })
+
   app.config(['$httpProvider', function($httpProvider) {
     $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
   }]);
@@ -57,7 +61,7 @@ $.fn.serializeObject = function() {
         .then(function(res) {
           setTimeout(function() {
             $scope.sendingData = false;
-            location.reload();
+            location.replace($scope.APP_URL + '/event/create');
           }, 2000);
         },
         function(res) {
@@ -87,7 +91,7 @@ $.fn.serializeObject = function() {
         .then(function(res) {
           setTimeout(function() {
             $scope.sendingData = false;
-            location.reload();
+            location.replace($scope.APP_URL + '/event/create');
           }, 2000);
         }, function(res) {
           $scope.sendingData = false;

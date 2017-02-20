@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Country;
 
 class CreateCountriesTable extends Migration {
   /**
@@ -22,6 +23,19 @@ class CreateCountriesTable extends Migration {
       $table->string('alpha2_code', 5);
       $table->timestamps();
     });
+
+    Country::create([
+      'name'  => 'NONE'
+    ]);
+
+    $countries = json_decode(File::get('database/seeds/datafiles/countries.json'));
+
+    foreach($countries as $country) {
+      Country::create([
+        'name'        => $country->name,
+        'alpha2_code' => $country->alpha2Code
+      ]);
+    }
   }
 
   /**

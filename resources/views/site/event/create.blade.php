@@ -19,21 +19,27 @@
             <i class="material-icons prefix">perm_contact_calendar</i>
             Crear un evento
           </span>
-          <form action="#">
+          {!! Form::open(['url' => '#', 'class' => 'event-form']) !!}
             <div class="row">
               <div class="col s6">
                 <div class="input-field col s11">
-                  <input id="event-name" type="text" name="event_name" class="validate" required="required">
-                  <label for="event-name">Nombre</label>
+                  {!! Form::text('event[name]', null, ['id' => 'event-name', 'class' => 'validate', 'required' => 'required']) !!}
+                  {!! Form::label('event-name', 'Nombre') !!}
                 </div>
                 <div class="input-field col s11">
-                  <textarea id="event-description" type="text" name="event_description" class="validate materialize-textarea" required="required"></textarea>
-                  <label for="event-description">Descripción</label>
+                  {!! Form::textarea('event[description]', null, ['id' => 'event-description', 'class' => 'validate materialize-textarea', 'required' => 'required']) !!}
+                  {!! Form::label('event-description', 'Descripción') !!}
                 </div>
               </div>
               <div class="col s6 center-align">
-                <span class="col s12">Agregar Imagen</span>
-                <div style="display:inline-block;margin-top:10px;margin-bottom:10px;width:320px;height:180px;background-color:#ccc;" class="responsive-img"></div>
+                <div class="col s12 center-align">
+                  <span>Agregar Imagen</span>
+                </div>
+                <div class="col s12">
+                  <div class="event-image-container">
+                    <div class="responsive-img event-image"></div>
+                  </div>
+                </div>
                 <!--
                 <div class="file-field input-field">
                   <div class="waves-effect waves-light btn">
@@ -46,11 +52,37 @@
                 </div>
                 -->
               </div>
+              <div class="col s12">
+                <div class="col s6">
+                  <div class="col s12 start-date-label">
+                    <span>Fecha de Inicio</span>
+                  </div>
+                  <div class="date-field input-field col s6">
+                    {!! Form::date('event[start_date][date]', '00/00/2017', ['id' => 'event-start-date-date', 'class' => 'validate center-align', 'required' => 'required']) !!}
+                  </div>
+                  <div class="date-field input-field col s5">
+                    {!! Form::time('event[start_date][time]', '00:00 AM', ['id' => 'event-start-date-time', 'class' => 'validate center-align', 'required' => 'required']) !!}
+                  </div>
+                </div>
+              </div>
+              <div class="col s12">
+                <div class="col s6">
+                  <div class="col s12 end-date-label">
+                    <span>Fecha de Finalización</span>
+                  </div>
+                  <div class="date-field input-field col s6">
+                    {!! Form::date('event[end_date][date]', '00/00/2017', ['id' => 'event-end-date-date', 'class' => 'validate center-align', 'required' => 'required']) !!}
+                  </div>
+                  <div class="date-field input-field col s5">
+                    {!! Form::time('event[end_date][time]', '00:00 AM', ['id' => 'event-end-date-time', 'class' => 'validate center-align', 'required' => 'required']) !!}
+                  </div>
+                </div>
+              </div>
               <div class="col s12  center-align">
                 <button type="submit" class="waves-effect waves-light btn light-blue darken-1">Crear & Publicar</button>
               </div>
             </div>
-          </form>
+          {!! Form::close() !!}
         </div>
       </div>
     </div>

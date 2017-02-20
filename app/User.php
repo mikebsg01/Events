@@ -11,7 +11,7 @@ class User extends Authenticatable {
    * @var array
    */
   protected $fillable = [
-    'first_name', 
+    'first_name',
     'last_name',
     'full_name',
     'username',
@@ -35,7 +35,14 @@ class User extends Authenticatable {
    * @var array
    */
   protected $hidden = [
-    'password', 
+    'password',
     'remember_token'
   ];
+
+  public function __construct($attributes = []) {
+    parent::__construct($attributes);
+
+    $this->attributes['profile_image_id'] = 1;
+    $this->attributes['location_id'] = 1;
+  }
 }

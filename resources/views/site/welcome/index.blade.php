@@ -119,7 +119,7 @@
   <div class="header col s12">
     <div class="container">
       <div class="col l4">
-        <img src="{!! asset('public/assets/img/logo-wtcqro-transparent-1.png') !!}" class="img-logo">
+        <img src="{!! asset('public/assets/img/v1/logo-wtcqro-transparent-1.png') !!}" class="img-logo">
       </div>
       <div class="col l8">
         <div class="right">
@@ -224,7 +224,7 @@
           <div class="col s12">
             <div class="card sticky-action">
               <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="{!!  asset('public/assets/img/faker/office-'.$event_cards[$i]['image_id'].'.jpg') !!}">
+                <img class="activator" src="{!! asset('public/assets/img/faker/office-'.$event_cards[$i]['image_id'].'.jpg') !!}">
               </div>
               <div class="card-content">
                 <span class="card-title activator grey-text text-darken-4"><?= substr($event_cards[$i]['title'], 0, 25) ?> <i class="material-icons right">more_vert</i></span>
@@ -292,7 +292,7 @@
         &copy; <?= date('Y') ?> Todos los Derechos Reservados
         <a class="powered-link grey-text text-lighten-4 right" href="http://urcorp.mx/#contact">
           <span>Powered by</span>
-          <img src="{!! asset('public/assets/img/urcorp-logo.svg') !!}" class="logo-urcorp">
+          <img src="{!! asset('public/assets/img/v1/urcorp-logo.svg') !!}" class="logo-urcorp">
         </a>
       </div>
     </div>

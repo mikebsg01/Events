@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Image;
 
 class CreateImagesTable extends Migration {
   /**
@@ -20,7 +21,13 @@ class CreateImagesTable extends Migration {
       $table->increments('id');
       $table->string('file_path', 255);
       $table->string('file_name', 255);
+      $table->timestamps();
     });
+
+    Image::create([
+      'file_path' => 'public/assets/img/v1/',
+      'file_name' => 'user-256x256.png'
+    ]);
   }
 
   /**

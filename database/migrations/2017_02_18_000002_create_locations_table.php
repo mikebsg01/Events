@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Location;
 
 class CreateLocationsTable extends Migration {
   /**
@@ -33,6 +34,13 @@ class CreateLocationsTable extends Migration {
             ->references('id')->on('countries')
             ->onDelete('cascade');
     });
+
+    Location::create([
+      'first_address' => 'NONE',
+      'country_id'    => 1,
+      'state'         => 'NONE',
+      'zip_code'      => 'XXXXX'
+    ]);
   }
 
   /**
